@@ -53,13 +53,13 @@ export function NavbarDemo() {
                         <NavbarLogo />
                         <MobileNavToggle
                             isOpen={isMobileMenuOpen}
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            onClickAction={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         />
                     </MobileNavHeader>
 
                     <MobileNavMenu
                         isOpen={isMobileMenuOpen}
-                        onClose={() => setIsMobileMenuOpen(false)}
+                        onCloseAction={() => setIsMobileMenuOpen(false)}
                     >
                         {navItems.map((item, idx) => (
                             <a

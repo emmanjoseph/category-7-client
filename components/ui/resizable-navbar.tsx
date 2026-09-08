@@ -28,7 +28,7 @@ interface NavItemsProps {
     link: string;
   }[];
   className?: string;
-  onItemClick?: () => void;
+  onItemClickAction?: () => void;
 }
 
 interface MobileNavProps {
@@ -46,7 +46,7 @@ interface MobileNavMenuProps {
   children: React.ReactNode;
   className?: string;
   isOpen: boolean;
-  onClose: () => void;
+  onCloseAction?: () => void;
 }
 
 export const Navbar = ({ children, className }: NavbarProps) => {
@@ -103,8 +103,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-60 mx-auto hidden w-full container flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex ",
+        visible && "bg-neutral-950/80",
         className,
       )}
     >
@@ -113,7 +113,11 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({
+  items,
+  className,
+  onItemClickAction,
+}: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -127,7 +131,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       {items.map((item, idx) => (
         <a
           onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
+          onClick={onItemClickAction}
           className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
           key={`link-${idx}`}
           href={item.link}
@@ -195,7 +199,7 @@ export const MobileNavMenu = ({
   children,
   className,
   isOpen,
-  onClose,
+  onCloseAction,
 }: MobileNavMenuProps) => {
   return (
     <AnimatePresence>
@@ -218,15 +222,15 @@ export const MobileNavMenu = ({
 
 export const MobileNavToggle = ({
   isOpen,
-  onClick,
+  onClickAction,
 }: {
   isOpen: boolean;
-  onClick: () => void;
+  onClickAction: () => void;
 }) => {
   return isOpen ? (
-    <IconX className="text-black dark:text-white" onClick={onClick} />
+    <IconX className="text-black dark:text-white" onClick={onClickAction} />
   ) : (
-    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+    <IconMenu2 className="text-black dark:text-white" onClick={onClickAction} />
   );
 };
 
@@ -242,28 +246,28 @@ export const NavbarLogo = () => {
         width={20}
         height={20}
       />
-      <span className="font-medium text-black dark:text-white font-semibold text-lg">Category7+</span>
+      <span className="text-white font-semibold text-lg">Category7+</span>
     </a>
   );
 };
 
-export const NavbarButton = ({
+type NavbarButtonProps<T extends React.ElementType = "a"> = {
+  href?: string;
+  as?: T;
+  children: React.ReactNode;
+  className?: string;
+  variant?: "primary" | "secondary" | "dark" | "gradient";
+} & React.ComponentPropsWithoutRef<T>;
+
+export const NavbarButton = <T extends React.ElementType = "a">({
   href,
-  as: Tag = "a",
+  as,
   children,
   className,
   variant = "primary",
   ...props
-}: {
-  href?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+}: NavbarButtonProps<T>) => {
+  const Tag = (as || "a") as any;
   const baseStyles =
     "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
