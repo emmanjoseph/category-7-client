@@ -74,16 +74,19 @@ const Footer = () => {
                     <div className="md:col-span-3">
                         <div className="space-y-6">
                             <div className="flex items-center space-x-2">
-                                <IconDots size={50}/> <span className="text-neutral-500">Main Office</span>
+                                <IconDots size={50}/> <span className="text-neutral-500">Contact us here</span>
                             </div>
                             <p className="text-neutral-100">
-                                123 Main Street, Anytown, USA
+                                Viewpark Towers ,Utalii Street , Nairobi Kenya
                             </p>
                             <p className="text-neutral-100">
                                 Phone: +254 722 966 576
                             </p>
                             <p className="text-neutral-100">
-                                Email:
+                                Phone: +254 733 966 576
+                            </p>
+                            <p className="text-neutral-100">
+                                Email:info@category7.co.ke
                             </p>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { motion } from "motion/react"
 import {ThreeDMarquee} from "@/components/ui/3d-marquee";
 import Image from "next/image";
+import ScrollWordReveal from "@/components/scroll-reveal";
 
 const images = [
   "https://plus.unsplash.com/premium_photo-1661657603741-eb321e840777?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFsYXJtJTIwc3lzdGVtfGVufDB8fDB8fHww",
@@ -69,15 +70,14 @@ export default function ServicesGrid() {
   ];
   return (
     <div className="relative z-20 mx-auto container py-10 lg:px-6 px-4 lg:py-16">
-      <div className="">
-        <h4 className="text-3xl font-bold tracking-tight lg:text-3xl lg:leading-tight text-white">
-          Complete Infrastructure Solutions
-        </h4>
+        <ScrollWordReveal
+            kicker="Our platform"
+            text="High-performance fiber installations, professional electrical rewiring, and smart security system setups — all tailored to the specific needs of residential and commercial properties."
+            startOpacity={0.2}
+            spread={0.85}
+            wordDuration={0.18}
+        />
 
-        <p className="my-4 max-w-2xl  text-sm font-normal text-neutral-500 lg:text-base dark:text-neutral-300">
-          Expertly engineered infrastructure designed to keep your facilities seamlessly connected, powered, and fully protected around the clock.
-        </p>
-      </div>
 
       <div className="relative">
         <div className="mt-12 grid grid-cols-1 rounded-md lg:grid-cols-6 xl:border dark:border-neutral-800">
