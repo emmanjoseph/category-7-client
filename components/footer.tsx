@@ -118,7 +118,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center justify-center pt-20 pb-14">
-                <h1 className={'opacity-50 text-5xl font-extrabold lg:text-[175px] tracking-wide  py-10 bg-linear-to-t from-neutral-600 to-neutral-900 bg-clip-text text-transparent'}>Category 7</h1>
+                <h1 className={'opacity-20 text-5xl font-extrabold lg:text-[175px] tracking-wide  py-10 bg-linear-to-t from-neutral-600 to-neutral-900 bg-clip-text text-transparent'}>Category 7</h1>
             </div>
         </footer>
 

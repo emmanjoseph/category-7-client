@@ -240,13 +240,7 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={20}
-        height={20}
-      />
-      <span className="text-white font-semibold text-lg">Category7+</span>
+      <span className="text-white font-semibold text-lg">Category7</span>
     </a>
   );
 };
@@ -269,7 +263,7 @@ export const NavbarButton = <T extends React.ElementType = "a">({
 }: NavbarButtonProps<T>) => {
   const Tag = (as || "a") as any;
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 b button bg-white/50 text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:

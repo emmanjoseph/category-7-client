@@ -6,6 +6,7 @@ import { motion } from "motion/react"
 import {ThreeDMarquee} from "@/components/ui/3d-marquee";
 import Image from "next/image";
 import ScrollWordReveal from "@/components/scroll-reveal";
+import DitherShader from "@/components/ui/dither-shader";
 
 const images = [
   "https://plus.unsplash.com/premium_photo-1661657603741-eb321e840777?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFsYXJtJTIwc3lzdGVtfGVufDB8fDB8fHww",
@@ -69,7 +70,7 @@ export default function ServicesGrid() {
     },
   ];
   return (
-    <div className="relative z-20 mx-auto container py-10 lg:px-6 px-4 lg:py-16">
+    <div className="relative z-20 mx-auto container lg:px-6 px-4 lg:py-16">
         <ScrollWordReveal
             kicker="Our platform"
             text="High-performance fiber installations, professional electrical rewiring, and smart security system setups — all tailored to the specific needs of residential and commercial properties."
@@ -137,10 +138,10 @@ export const SkeletonOne = () => {
         <div className="flex h-full w-full flex-1 flex-col space-y-2">
           {/* TODO */}
           <img
-            src="https://images.unsplash.com/photo-1529310399831-ed472b81d589?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGVsZWN0cmljaXR5fGVufDB8fDB8fHww"
+            src="https://images.unsplash.com/photo-1652715564391-38cc4475b7f5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAzfHxlbGVjdHJpY2FsfGVufDB8fDB8fHww"
             alt="header"
-            width={800}
-            height={800}
+            width={700}
+            height={700}
             className="aspect-square h-full w-full rounded-sm object-cover object-left-top"
           />
         </div>
@@ -158,11 +159,21 @@ export const SkeletonThree = () => {
       className="group/image relative flex h-full gap-10"
     >
       <div className="group mx-auto h-full w-full bg-transparent">
-        <div className="relative flex h-full w-full flex-1 flex-col space-y-2">
-         <Image src={'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=3268&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} alt={'internet'} width={600} height={600}
-          className=" h-full w-full object-cover opacity-60"
-         />
+        <div className="relative flex h-full w-full flex-1 flex-col space-y-2 pt-3">
+          <DitherShader
+              src="https://images.unsplash.com/photo-1612045194743-877419047a35?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              gridSize={1}
+              ditherMode="bayer"
+              colorMode="duotone"
+              primaryColor="#cacad9"
+              secondaryColor="#000000"
+              threshold={0.45}
+              className="h-64 w-full sm:h-90"
+          />
         </div>
+
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-[100] h-full w-20 bg-gradient-to-r from-white to-transparent dark:from-black" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[100] h-full w-20 bg-gradient-to-l from-white to-transparent dark:from-black" />
       </div>
     </div>
   );
@@ -177,63 +188,55 @@ export const SkeletonTwo = () => {
     "https://images.unsplash.com/photo-1774673944402-ba00cfb82a18?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzB8fGVsZWN0cmljYWwlMjBmZW5jZXxlbnwwfHwwfHx8MA%3D%3D",
   ];
 
+  const rotationsFirst = [-6, 4, -2, 7, -4];
+  const rotationsSecond = [5, -7, 2, -3, 6];
+
   const imageVariants = {
-    whileHover: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
-    whileTap: {
-      scale: 1.1,
-      rotate: 0,
-      zIndex: 100,
-    },
+    whileHover: { scale: 1.1, rotate: 0, zIndex: 100 },
+    whileTap: { scale: 1.1, rotate: 0, zIndex: 100 },
   };
+
   return (
     <div className="relative flex h-full flex-col items-start gap-10 overflow-hidden p-8">
       {/* TODO */}
       <div className="-ml-20 flex flex-row">
         {images.map((image, idx) => (
-          <motion.div
-            variants={imageVariants}
-            key={"images-first" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="mt-4 -mr-4 shrink-0 overflow-hidden rounded-xl border border-neutral-100 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800"
-          >
-            <img
-              src={image}
-              alt="bali images"
-              width="500"
-              height="500"
-              className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
-            />
-          </motion.div>
+            <motion.div
+                variants={imageVariants}
+                key={"images-first" + idx}
+                style={{ rotate: rotationsFirst[idx] }}
+                whileHover="whileHover"
+                whileTap="whileTap"
+                className="mt-4 -mr-4 shrink-0 overflow-hidden rounded-xl border border-neutral-100 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800"
+            >
+              <img
+                  src={image}
+                  alt="security system"
+                  width="500"
+                  height="500"
+                  className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
+              />
+            </motion.div>
         ))}
       </div>
       <div className="flex flex-row">
         {images.map((image, idx) => (
-          <motion.div
-            key={"images-second" + idx}
-            style={{
-              rotate: Math.random() * 20 - 10,
-            }}
-            variants={imageVariants}
-            whileHover="whileHover"
-            whileTap="whileTap"
-            className="mt-4 -mr-4 shrink-0 overflow-hidden rounded-xl border border-neutral-100 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800"
-          >
-            <img
-              src={image}
-              alt="bali images"
-              width="500"
-              height="500"
-              className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
-            />
-          </motion.div>
+            <motion.div
+                key={"images-second" + idx}
+                style={{ rotate: rotationsSecond[idx] }}
+                variants={imageVariants}
+                whileHover="whileHover"
+                whileTap="whileTap"
+                className="mt-4 -mr-4 shrink-0 overflow-hidden rounded-xl border border-neutral-100 bg-white p-1 dark:border-neutral-700 dark:bg-neutral-800"
+            >
+              <img
+                  src={image}
+                  alt="security system"
+                  width="500"
+                  height="500"
+                  className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
+              />
+            </motion.div>
         ))}
       </div>
 
@@ -253,11 +256,31 @@ export const SkeletonFour = () => {
 
 export const Customize = ({ className }: { className?: string }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   return (
-   <div>
-     <div className="w-full overflow-hidden">
-       <ThreeDMarquee images={images} />
-     </div>
-   </div>
+      <div>
+        <div className="group/image relative flex h-full w-full gap-10">
+          <div className="group w-11/12 mx-auto h-full bg-transparent">
+            <div className="relative flex h-full max-w-5xl flex-1 flex-col space-y-2">
+              <ThreeDMarquee images={images} />
+            </div>
+
+            {/* Edge fading */}
+            <div className="pointer-events-none absolute inset-0 z-[100]">
+              {/* Left */}
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/70 to-transparent dark:from-black dark:via-black/70" />
+
+              {/* Right */}
+              <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/70 to-transparent dark:from-black dark:via-black/70" />
+
+              {/* Top */}
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60" />
+
+              {/* Bottom */}
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60" />
+            </div>
+          </div>
+        </div>
+      </div>
   );
 };
