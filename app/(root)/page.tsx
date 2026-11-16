@@ -7,12 +7,13 @@ import Testimonials from "@/components/testimonials";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import ServiceCloud from "@/components/ServiceCloud";
+import About from "@/components/about";
 
 const Page = () => {
     return (
         <>
             <Hero/>
-            <ServiceCloud/>
+            <About/>
             <ServicesGrid/>
             <FeaturesSectionDemo/>
             <Stats/>

@@ -54,9 +54,9 @@ export default function ServicesGrid() {
       className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
     },
     {
-      title: "Get blazingly fast internet",
+      title: "Get blazingly fast services",
       description:
-        "Ultra-fast, low-latency fiber internet engineered to support heavy streaming, seamless remote work, and high-bandwidth business demands.",
+        "Ultra-fast, low-latency fiber services engineered to support heavy streaming, seamless remote work, and high-bandwidth business demands.",
       skeleton: <SkeletonThree />,
       className:
         "col-span-1 lg:col-span-3 lg:border-r  dark:border-neutral-800",
@@ -70,18 +70,16 @@ export default function ServicesGrid() {
     },
   ];
   return (
-    <div className="relative z-20 mx-auto container lg:px-6 px-4 lg:py-16">
-        <ScrollWordReveal
-            kicker="Our platform"
-            text="High-performance fiber installations, professional electrical rewiring, and smart security system setups — all tailored to the specific needs of residential and commercial properties."
-            startOpacity={0.2}
-            spread={0.85}
-            wordDuration={0.18}
-        />
-
-
-      <div className="relative">
-        <div className="mt-12 grid grid-cols-1 rounded-md lg:grid-cols-6 xl:border dark:border-neutral-800">
+    <div className="relative z-20">
+      <div
+          className="relative flex w-full flex-col overflow-hidden bg-[#0b0c0e] text-white h-5"
+          style={{
+            backgroundImage:
+                'repeating-linear-gradient(90deg, #2b2d31 0px, #2b2d31 1px, transparent 1px, transparent 5px)',
+          }}
+          />
+      <div className="relative mx-auto container lg:px-6 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-6 dark:border-neutral-800 xl:border-x">
           {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
@@ -91,6 +89,13 @@ export default function ServicesGrid() {
           ))}
         </div>
       </div>
+      <div
+          className="relative flex w-full flex-col overflow-hidden bg-[#0b0c0e] text-white h-5"
+          style={{
+            backgroundImage:
+                'repeating-linear-gradient(90deg, #2b2d31 0px, #2b2d31 1px, transparent 1px, transparent 5px)',
+          }}
+      />
     </div>
   );
 }

@@ -1,9 +1,11 @@
+"use client"
 import React from 'react'
-import { IconQuotes } from "@tabler/icons-react";
+import { motion } from "motion/react"
+import { IconQuotes } from "@tabler/icons-react"
 
 const testimonials = [
     {
-        quote: "Our office internet hasn't dropped once since the switch. The team handled the whole fiber installation in under a day with zero disruption to our work.",
+        quote: "Our office services hasn't dropped once since the switch. The team handled the whole fiber installation in under a day with zero disruption to our work.",
         name: "Wanjiru Kamau",
         role: "Operations Manager, Logistics Firm",
         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -27,7 +29,7 @@ const testimonials = [
         avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
     },
     {
-        quote: "Reliable internet was non-negotiable for our call center. They ran dedicated fiber lines with failover backup, and we've had 100% uptime since.",
+        quote: "Reliable services was non-negotiable for our call center. They ran dedicated fiber lines with failover backup, and we've had 100% uptime since.",
         name: "Grace Achieng",
         role: "IT Lead, BPO Company",
         avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -50,57 +52,78 @@ const testimonials = [
         role: "Property Owner",
         avatar: "https://images.unsplash.com/photo-1559599101-f09722fb4948?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
     },
-    {
-        quote: "Security was our biggest concern after a string of break-ins nearby. The motion-sensor lighting and camera coverage they installed gave us real peace of mind.",
-        name: "Brian Mwangi",
-        role: "Homeowner",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-    },
-];
+]
+
+const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.08 } },
+}
+
+const card = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 const Testimonials = () => {
     return (
-        <div
-            style={{
-                maskImage:
-                    "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-                WebkitMaskImage:
-                    "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-            }}
-            className="max-w-7xl mx-auto py-10 px-4 space-y-10">
-            <div className="flex flex-col space-y-3 items-center">
-                <h1 className="text-4xl font-medium text-center">What our clients have to say</h1>
-                <p>Real feedback from clients we've helped with internet, electrical, and security installations.</p>
+        <section className="container mx-auto space-y-10 px-4 py-20 md:py-36 text-white">
+            {/* Header */}
+            <div className="space-y-5">
+                <div className="flex items-center gap-4">
+                    <span className="h-2 w-2 bg-[#4079FFFF]" />
+                    <p className="font-mono text-[11px] font-medium uppercase leading-none tracking-[0.16em] text-white/60">
+                        What our clients have to say
+                    </p>
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                        className="h-px flex-1 origin-left bg-white/15"
+                    />
+                </div>
+                <p className="max-w-xl text-white/60">
+                    Real feedback from clients we've helped with internet, electrical, and security installations.
+                </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 rounded-xl p-1 bg-neutral-950 border border-neutral-800">
-                {testimonials.map((testimonial, index) => (
-                    <div
+            {/* Cards */}
+            <motion.div
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-80px" }}
+                className="grid grid-cols-1 gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4"
+            >
+                {testimonials.map((t, index) => (
+                    <motion.div
                         key={index}
-                        // ✅ Same alternating pattern preserved: even index = bg-neutral-900, odd = no bg
-                        className={`flex flex-col space-y-4 p-3 rounded-xl border border-neutral-800 ${
-                            index % 2 === 0 ? "bg-neutral-900" : ""
-                        }`}
+                        variants={card}
+                        className="group relative flex flex-col justify-between gap-6 overflow-hidden bg-gradient-to-b from-[#15161a] to-[#0b0c0e] p-6"
                     >
-                        <IconQuotes size={60} className="text-neutral-500" />
+                        <div className="space-y-4">
+                            <IconQuotes size={40} stroke={1.5} className="text-[#4079FFFF]" />
+                            <p className="text-[15px] leading-relaxed text-white/70">{t.quote}</p>
+                        </div>
 
-                        <p className="text-base max-w-[350px]">{testimonial.quote}</p>
-
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center gap-3">
                             <img
-                                src={testimonial.avatar}
-                                alt="avatar"
-                                className="w-13 h-13 object-cover rounded-xl border-5 border-white"
+                                src={t.avatar}
+                                alt={t.name}
+                                className="h-12 w-12 shrink-0 border border-white/15 object-cover grayscale transition duration-500 group-hover:grayscale-0"
                             />
-                            <div>
-                                <h1 className="text-white font-medium text-base">{testimonial.name}</h1>
-                                <span className="text-sm text-neutral-500">{testimonial.role}</span>
+                            <div className="min-w-0">
+                                <h3 className="truncate text-sm font-semibold text-white">{t.name}</h3>
+                                <span className="text-xs text-white/50">{t.role}</span>
                             </div>
                         </div>
-                    </div>
+
+                        {/* accent line on hover */}
+                        <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#4079FFFF] transition-all duration-500 group-hover:w-full" />
+                    </motion.div>
                 ))}
-            </div>
-        </div>
+            </motion.div>
+        </section>
     )
 }
 
