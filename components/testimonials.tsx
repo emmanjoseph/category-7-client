@@ -2,6 +2,7 @@
 import React from 'react'
 import { motion } from "motion/react"
 import { IconQuotes } from "@tabler/icons-react"
+import {Variants} from "motion";
 
 const testimonials = [
     {
@@ -54,12 +55,12 @@ const testimonials = [
     },
 ]
 
-const container = {
+const container : Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.08 } },
 }
 
-const card = {
+const card: Variants  = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }

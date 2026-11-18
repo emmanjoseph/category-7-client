@@ -3,6 +3,7 @@ import React from "react"
 import Image from "next/image"
 import { motion } from "motion/react"
 import { IconArrowUpRight, IconPhone } from "@tabler/icons-react"
+import {Variants} from "motion";
 
 const strip = {
     backgroundImage:
@@ -13,19 +14,19 @@ const values = [
     {
         title: "Efficiency",
         badge: "Our Core Values",
-        image: "/images/efficiency.png",
+        image: "https://images.unsplash.com/photo-1768055105012-4c53791b2877?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
         description:
-            "At Simplex Technologies, we prioritize efficiency in every project we undertake. Our primary goal is to optimize time, reduce costs, and conserve resources, ensuring the best outcomes for our clients while maintaining operational excellence within our organization.",
+            "At Category 7, we prioritize efficiency in every project we undertake. Our primary goal is to optimize time, reduce costs, and conserve resources, ensuring the best outcomes for our clients while maintaining operational excellence within our organization.",
     },
     {
         title: "Customer Concerns",
-        image: "/images/customerConcern.jpg",
+        image: "https://images.unsplash.com/photo-1509909756405-be0199881695?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
         description:
             "This is at the heart of our business, where we are not only looking to relate with our clients, we are focused on coming up with solutions that incorporate our clients' concerns of all natures, be it moral or technical.",
     },
     {
         title: "Optimization",
-        image: "/images/optimization.png",
+        image: "https://images.unsplash.com/photo-1676311396794-f14881e9daaa?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
         description:
             "This is where we ensure that all our installations are reliable (without fail), durable, resistant to interference from the external environment, and that the implemented system serves the specific purpose it is intended for.",
     },
@@ -37,12 +38,12 @@ const phones = [
     { label: "0777 966 576", href: "tel:+254777966576" },
 ]
 
-const container = {
+const container:Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
 
-const item = {
+const item:Variants = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 }

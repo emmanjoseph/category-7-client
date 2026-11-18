@@ -2,6 +2,7 @@
 import React from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
+import {Variants} from "motion";
 
 const plans = [
     {
@@ -30,12 +31,12 @@ const gridTile = {
     backgroundSize: "57px 57px",
 }
 
-const container = {
+const container:Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
 }
 
-const item = {
+const item:Variants = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 }

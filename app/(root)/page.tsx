@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import ServiceCloud from "@/components/ServiceCloud";
 import About from "@/components/about";
+import Faq from "@/components/faq";
 
 const Page = () => {
     return (
@@ -18,6 +19,7 @@ const Page = () => {
             <FeaturesSectionDemo/>
             <Stats/>
             <Testimonials/>
+            <Faq/>
             <ContactCTA/>
             <Footer/>
         </>

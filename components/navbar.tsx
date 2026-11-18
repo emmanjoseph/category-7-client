@@ -19,8 +19,8 @@ export function NavbarDemo() {
             link: "/services",
         },
         {
-            name: "Security",
-            link: "#contact",
+            name: "Blog",
+            link: "/blog",
         },
         {
             name: "About us",
@@ -38,7 +38,7 @@ export function NavbarDemo() {
                     <NavbarLogo />
                     <NavItems items={navItems} />
                     <div className="flex items-center gap-4">
-                        <NavbarButton variant="primary">Talk with us</NavbarButton>
+                        <NavbarButton variant="primary">Start a project</NavbarButton>
                     </div>
                 </NavBody>
 

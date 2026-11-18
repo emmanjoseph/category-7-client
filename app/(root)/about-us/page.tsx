@@ -4,6 +4,13 @@ import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { motion } from "motion/react"
 import Image from "next/image"
 import AboutStory from "@/components/AboutStory";
+import {Variants} from "motion";
+
+
+// export const metadata = {
+//     title: 'About Us',
+//     description: 'More about Category 7 Tech Group LTD',
+// }
 
 const strip = {
     backgroundImage:
@@ -15,22 +22,17 @@ const diagonal = {
         "repeating-linear-gradient(115deg, #3a3d43 0px, #3a3d43 1px, transparent 1px, transparent 9px)",
 }
 
-const container = {
+const container: Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
 
-const item = {
+const item : Variants = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 }
 
-const milestones = [
-    {
-        title: '2023',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-    }
-]
+
 
 const About = () => {
     return (

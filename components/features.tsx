@@ -2,6 +2,7 @@
 import React, { useId } from "react"
 import { motion } from "framer-motion"
 import { Cable, Zap, Cctv, KeyRound, BatteryCharging, ShieldAlert, Network, Headset } from "lucide-react"
+import {Variants} from "motion";
 
 const grid = [
   { icon: Cable, title: "High-Speed Fiber Internet", description: "Dedicated fiber optic connectivity delivering high-speed, low-latency services with guaranteed uptime for residential and commercial spaces." },
@@ -22,12 +23,12 @@ const patterns = [
   [[10, 3], [8, 1], [9, 5], [7, 4], [10, 6]],
 ]
 
-const container = {
+const container:Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08 } },
 }
 
-const card = {
+const card:Variants = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
 import { IconArrowUp, IconArrowUpRight } from "@tabler/icons-react"
+import {Variants} from "motion";
 
 const links = [
     { name: "Home", href: "/" },
@@ -17,12 +18,12 @@ const strip = {
         "repeating-linear-gradient(90deg, #2b2d31 0px, #2b2d31 1px, transparent 1px, transparent 5px)",
 }
 
-const container = {
+const container:Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.1 } },
 }
 
-const item = {
+const item:Variants = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 }

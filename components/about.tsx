@@ -1,7 +1,8 @@
 "use client"
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, {useRef} from 'react'
+import {motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { Cable, Wifi, Globe, Router, Network, ShieldCheck, Cctv, Zap, Plug, Server } from 'lucide-react'
+import {Variants} from "motion";
 
 const services = [
     { icon: Cable, label: 'Fibre' },
@@ -16,23 +17,32 @@ const services = [
     { icon: Server, label: 'Servers' },
 ]
 
-const container = {
+const container: Variants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
 }
 
-const item = {
+const item: Variants = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 }
 
 const About = () => {
+    const ref = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ['start end', 'end start'],
+    })
+    const smooth = useSpring(scrollYProgress, { stiffness: 80, damping: 20 })
+    const bgX = useTransform(smooth, [0, 1], ['0px', '-300px'])
     return (
-        <section
+        <motion.section
+            ref={ref}
             className="relative flex min-h-[700px] w-full flex-col overflow-hidden bg-[#0b0c0e] text-white md:min-h-screen"
             style={{
                 backgroundImage:
                     'repeating-linear-gradient(90deg, #2b2d31 0px, #2b2d31 1px, transparent 1px, transparent 5px)',
+                backgroundPositionX: bgX,
             }}
         >
             {/* Orange sidebar */}
@@ -126,7 +136,7 @@ const About = () => {
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 
